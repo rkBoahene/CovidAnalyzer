@@ -25,14 +25,18 @@ def create_app(test_config=None):
     # import and initialize db in main app
     from . import db
     db.init_app(app)
-    
+
     # register auth blueprint to app
     from . import auth
     app.register_blueprint(auth.bp)
 
+    # register analyzer blueprint to app
+    from . import analyzer
+    app.register_blueprint(analyzer.bp)
+    app.add_url_rule('/', endpoint='index')
     # a simple page saying hello
-    @app.route('/')
-    def welcome():
-        return 'welcome to covid analyzer'
+    # @app.route('/')
+    # def welcome():
+    #     return 'welcome to covid analyzer'
 
     return app 

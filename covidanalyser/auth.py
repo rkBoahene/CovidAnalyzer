@@ -65,7 +65,7 @@ def login():
 
 # @bp.before_app_request() registers a function that runs before the view function,
 #  no matter what URL is requested. 
-@bp.before_app_request()
+@bp.before_app_request
 def load_logged_in_user():
     user_id = session.get('user_id')
 
