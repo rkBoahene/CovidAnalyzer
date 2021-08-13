@@ -63,7 +63,8 @@ def login():
     return render_template('auth/login.html')
 
 
-
+# @bp.before_app_request() registers a function that runs before the view function,
+#  no matter what URL is requested. 
 @bp.before_app_request()
 def load_logged_in_user():
     user_id = session.get('user_id')
@@ -74,3 +75,22 @@ def load_logged_in_user():
         g.user = get_db().execute(
             'SELECT * FROM user WHERE id = ?', (user_id,)
         ).fetchone()
+
+
+# to logout, just clear the session so that the load_logged_in_user()
+# returns None for user when called
+@bp.route('/logout')
+def logout():
+    session.clear()
+    return redirect(url_for('index'))
+
+
+# a decorator to check if user is logged in,
+#  I will use it when user tries to make any analysis
+def login_required(view):
+    functools.wraps(view)
+    def wrapped_view(**kwargs):
+        if g.user is None:
+            return redirect(url_for('auth.login'))
+        return view(**kwargs)
+    return wrapped_view
