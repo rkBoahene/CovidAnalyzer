@@ -11,7 +11,7 @@
     <body>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container">
-                <a class="navbar-brand" href="#">Covid Analyzer</a>
+                <a class="navbar-brand" href="{{ url_for('index')}}">Covid Analyzer</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                  aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -20,8 +20,8 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">
                     
-                            <li class="nav-item "><a href="#" class="nav-link">Home</a>
-                            <li class="nav-item "><a href="#" class="nav-link">Analyzer</a>
+                            <li class="nav-item "><a href="{{ url_for('index')}}" class="nav-link">Home</a>
+                            <li class="nav-item "><a href="{{ url_for('analyzer.dashboard')}}" class="nav-link">Analyzer</a>
 
                     </ul>
                     <span class="navbar-text">

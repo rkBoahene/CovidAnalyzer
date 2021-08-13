@@ -1,5 +1,6 @@
 import os
 from flask import Flask
+from flask.templating import render_template
 
 def create_app(test_config=None):
     # creating and configuring the app
@@ -33,10 +34,25 @@ def create_app(test_config=None):
     # register analyzer blueprint to app
     from . import analyzer
     app.register_blueprint(analyzer.bp)
+    # associate '/' to endpoint name == index 
     app.add_url_rule('/', endpoint='index')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     # a simple page saying hello
     # @app.route('/')
     # def welcome():
-    #     return 'welcome to covid analyzer'
+    #     return render_template('analyzer/dashboard.html')
 
     return app 
