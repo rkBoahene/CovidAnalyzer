@@ -1,0 +1,4 @@
+include covidanalyser/schema.sql
+graft covidanalyser/static
+graft covidanalyser/templates
+global-exclude *.pyc
