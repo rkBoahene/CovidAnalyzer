@@ -11,5 +11,6 @@ def index():
     return render_template('analyzer/index.html')
 
 @bp.route('/dashboard')
+@login_required
 def dashboard():
     return render_template('analyzer/dashboard.html')
