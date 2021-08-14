@@ -51,8 +51,8 @@ def create_app(test_config=None):
 
 
     # a simple page saying hello
-    # @app.route('/')
-    # def welcome():
-    #     return render_template('analyzer/dashboard.html')
+    @app.route('/hello')
+    def welcome():
+        return 'Hello, World!'
 
     return app 
