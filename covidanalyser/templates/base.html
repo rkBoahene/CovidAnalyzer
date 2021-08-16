@@ -15,6 +15,7 @@
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
    integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
    crossorigin=""></script>
+   
     </head>
     <body>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -60,12 +61,13 @@
             {% endfor %}
             <div class="container-fluid">
                 {% block content %}{% endblock %}
+                
             </div>
         </section>
 
         <script src="{{ url_for('static', filename='js/jquery-3.3.1.min.js') }}"></script>
         <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
-        <script src="{{ url_for('static', filename='js/covidanalyser.js') }}"></script>
+        
 
         
     </body>

@@ -1,8 +1,26 @@
 import os
 from flask import Flask
 from flask.templating import render_template
+from logging.config import dictConfig
 
 def create_app(test_config=None):
+    # configure loggingin app, usally not done but if done should be declared
+    # before the flask app setup
+    dictConfig({
+        'version': 1,
+        'formatters': {'default': {
+            'format': '[%(asctime)s] %(levelname)s in %(module)s: %(message)s',
+        }},
+        'handlers': {'wsgi': {
+            'class': 'logging.StreamHandler',
+            'stream': 'ext://flask.logging.wsgi_errors_stream',
+            'formatter': 'default'
+        }},
+        'root': {
+            'level': 'INFO',
+            'handlers': ['wsgi']
+        }
+    })
     # creating and configuring the app
     app = Flask(__name__, instance_relative_config=True)
     app.config.from_mapping(

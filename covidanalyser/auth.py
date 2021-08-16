@@ -1,7 +1,8 @@
 import functools
-from flask import (Blueprint, flash, g, redirect,render_template,request, session, url_for)
+from flask import (Blueprint, app, flash, g, redirect,render_template,request, session, url_for)
 from werkzeug.security import check_password_hash, generate_password_hash
 from covidanalyser.db import get_db
+
 
 # create blueprint named auth, with second arguement telling where its defined 
 # and a url_prefix which is prepended to all routes associated with this blueprint
@@ -31,6 +32,7 @@ def register():
             'INSERT INTO user(username, password) VALUES (?,?)', (username,generate_password_hash(password))
             )
             db.commit()
+            # covidanalyser.logger.info('%s successfully created', username)
             return redirect(url_for('auth.login'))
         flash(error)
     return render_template('auth/register.html')
@@ -55,6 +57,7 @@ def login():
             error = 'Password does not match'
 
         if error is None:
+            # covidanalyser.logger.info('%s logged in successfully', user.username)
             session.clear()
             session['user_id'] = user['id']
             return redirect(url_for('index'))
